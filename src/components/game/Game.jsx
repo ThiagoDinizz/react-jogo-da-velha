@@ -3,6 +3,7 @@ import styles from "./Game.module.css"
 
 import GameOption from "../gameOption/GameOpition"
 import GameInfo from "../gameInfo/GameInfo"
+import Score from "../score/Score"
 
 const winnerTable = [
   [0, 1, 2],
@@ -87,6 +88,7 @@ function Game () {
         </div>
         <GameInfo currentPlayer={currentPlayer} winner={winner} onReset={handleReset} isDraw={draw} />
       </div>
+      <Score/>
     </>
   )
 }
