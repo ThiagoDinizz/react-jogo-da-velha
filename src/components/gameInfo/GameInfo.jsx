@@ -12,7 +12,7 @@ function GameInfo ({ currentPlayer, winner, onReset, isDraw }) {
   return(
     <div className={styles.gameInfo}>
       {
-        isDraw && <h4> EMPATE! Próxima a jogada!</h4>
+        isDraw && <h4> EMPATE! Próxima jogada!</h4>
       }
       
       {
