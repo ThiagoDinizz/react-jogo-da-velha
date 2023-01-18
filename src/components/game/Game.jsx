@@ -23,6 +23,8 @@ function Game () {
   const [winner, setWinner] = useState(0) // updates winner
   const [winnerLine, setWinnerLine] = useState([]) // updates winner line path
   const [draw, setDraw] = useState(false)
+  const [scoreX, setScoreX] = useState(0)
+  const [scoreY, setScoreY] = useState(0)
 
   const handleClick = (pos) => { // when a space in the game table is clicked triggers changes
     if (gameState[pos] === 0 && winner === 0) { // if space is empty and no one has won yet
@@ -40,8 +42,18 @@ function Game () {
         setWinner(sum / 3);
         setWinnerLine(line)
         }
+
     })
   }
+
+  const score = () =>{
+    if(winner===-1){
+      setScoreX(scoreX +1)
+    }else if(winner===1){
+      setScoreY(scoreY+1)
+    }
+  }
+
 
   const handleReset = () => {
     setGameState(Array(9).fill(0))
@@ -68,7 +80,11 @@ function Game () {
 
   useEffect(() => {
     if (winner !== 0) setDraw(false)
-  }, [winner])
+  }, [winner],)
+
+  useEffect(()=>{
+    if(winner ===1 || winner===-1) return score()
+  },[winner])
 
   return (
     <>
@@ -88,7 +104,7 @@ function Game () {
         </div>
         <GameInfo currentPlayer={currentPlayer} winner={winner} onReset={handleReset} isDraw={draw} />
       </div>
-      <Score/>
+      <Score scoreX={scoreX} scoreY={scoreY} />
     </>
   )
 }
